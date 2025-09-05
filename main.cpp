@@ -1,5 +1,5 @@
 /*
-28 de agosto de 2024
+4 de septiembre de 2025
 Vanessa Reteguín - 375533
 
 Actividad 6.1: Práctica Estados y Transiciones
