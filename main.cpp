@@ -83,6 +83,7 @@ cosas) con 01
 */
 
 /* ------------ Resources / Documentation involved ------------- */
+// Le copié a Pablo usar un mapa de pares, hace todo más sencillo
 
 /* ------------------------- Libraries ------------------------- */
 #include <iostream> /* cin/cout */
@@ -110,21 +111,50 @@ void endTitle() {
             "\n(\\|||/)        FIN      \n";
 }
 
-void automatonTitle() {
+void automatonTitle1() {
     cout << "\n^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^"
+            "\n||                     Autómata I                     ||"
             "\n|| A = (Q, Σ, δ, s, F)                                ||"
             "\n|| Conjunto de Estados Posibles  Q: {q0, q1, q2, q3}  ||"
             "\n|| Alfabeto                      Σ: {0, 1}            ||"
             "\n|| Estado Inicial                s: q0                ||"
             "\n|| Conjunto de Estados finales   F: q1                ||"
-            "\n^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^\n";
+            "\nv-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v\n";
 }
 
-void getNextState(string initialState, int transitionInput) {
+void automatonTitle2() {
+    cout << "\n^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^"
+            "\n||                     Autómata II                        ||"
+            "\n|| A = (Q, Σ, δ, s, F)                                    ||"
+            "\n|| Conjunto de Estados Posibles  Q: {q0, q1, q2, q3, q4}  ||"
+            "\n|| Alfabeto                      Σ: {0, 1}                ||"
+            "\n|| Estado Inicial                s: q0                    ||"
+            "\n|| Conjunto de Estados finales   F: q2                    ||"
+            "\nv-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v-v\n";
+}
+
+void getNextState1(string initialState, int transitionInput) {
     map<pair<string, int>, string> transitionMap = {
         {{"q0", 1}, "q1"}, {{"q1", 0}, "q3"}, {{"q2", 0}, "q0"},
         {{"q3", 1}, "q2"}, {{"q0", 0}, "q2"}, {{"q1", 1}, "q0"},
         {{"q2", 1}, "q3"}, {{"q3", 0}, "q1"}};
+
+    auto it = transitionMap.find({initialState, transitionInput});
+
+    if (it != transitionMap.end()) {
+        cout << endl << "Estado Resultado: " << it->second << endl;
+        cout << "T(" << initialState << ", " << transitionInput
+             << ") = " << it->second << endl;
+    } else {
+        cout << endl << "[!] Transición no válida" << endl;
+    }
+}
+
+void getNextState2(string initialState, int transitionInput) {
+    map<pair<string, int>, string> transitionMap = {
+        {{"q0", 0}, "q1"}, {{"q1", 1}, "q2"}, {{"q2", 0}, "q3"},
+        {{"q2", 1}, "q4"}, {{"q3", 0}, "q3"}, {{"q3", 1}, "q2"},
+        {{"q4", 0}, "q3"}, {{"q4", 1}, "q4"}};
 
     auto it = transitionMap.find({initialState, transitionInput});
 
@@ -156,7 +186,7 @@ int main() {
 
         switch (userChoice) {
             case 1:
-                automatonTitle();
+                automatonTitle1();
                 cout << endl << "Ingrese estado inicial (q0, q1, q2, q3): ";
                 while ((cin >> initialState) &&
                        !((initialState == "q0") || (initialState == "q1") ||
@@ -172,11 +202,27 @@ int main() {
                     cin.ignore();
                 }
 
-                getNextState(initialState, transitionInput);
+                getNextState1(initialState, transitionInput);
                 break;
 
             case 2:
-                cout << endl << "Ejercicio 2" << endl;
+                automatonTitle2();
+                cout << endl << "Ingrese estado inicial (q0, q1, q2, q3): ";
+                while ((cin >> initialState) &&
+                       !((initialState == "q0") || (initialState == "q1") ||
+                         (initialState == "q2") || (initialState == "q3"))) {
+                    cin.clear();
+                    cin.ignore();
+                }
+
+                cout << "Ingrese entrada para transición: ";
+                while (!((cin >> transitionInput) &&
+                         (transitionInput >= 0 && transitionInput <= 1))) {
+                    cin.clear();
+                    cin.ignore();
+                }
+
+                getNextState2(initialState, transitionInput);
                 break;
 
             case 3:
