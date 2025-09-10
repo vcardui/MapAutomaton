@@ -1,5 +1,5 @@
 /*
-4 de septiembre de 2025
+9 de septiembre de 2025
 Vanessa Reteguín - 375533
 
 Actividad 6.2: Práctica Estados y Transiciones
@@ -113,6 +113,17 @@ void endTitle() {
 }
 
 void automatonTitle1() {
+    cout << "\n          ======  -- 1 -->  ____"
+            "\nStart |> || q0 ||          | q1 |"
+            "\n  End <|  ======  <-- 1 --  ‾‾‾‾"
+            "\n           |  ^             ^  |"
+            "\n           0  |             |  0"
+            "\n           |  0             0  |"
+            "\n           v  |             |  v"
+            "\n           ____  -- 1 -->  ____"
+            "\n          | q2 |          | q3 |"
+            "\n           ‾‾‾‾  <-- 1 --  ‾‾‾‾\n";
+
     cout << "\n^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^"
             "\n||                     Autómata I                     ||"
             "\n|| A = (Q, Σ, δ, s, F)                                ||"
@@ -124,6 +135,19 @@ void automatonTitle1() {
 }
 
 void automatonTitle2() {
+    cout << "\n                                                           /\\"
+            "\n                                                         _v__|_"
+            "\n                                               / - 0 -> |  q3  |"
+            "\n                                              /       /  ‾‾‾‾‾‾ "
+            " \\    /\\"
+            "\n          ____          ____          ====== / <- 1 -/          "
+            "  \\ _v__|_"
+            "\nStart |> | q0 | - 0 -> | q1 | - 1 -> || q2 || ----------- 1 "
+            "-----> |  q4  |"
+            "\n          ‾‾‾‾          ‾‾‾‾          ======                    "
+            "    ‾‾‾‾‾‾"
+            "\n                                       <| End\n";
+
     cout << "\n^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^"
             "\n||                     Autómata II                        ||"
             "\n|| A = (Q, Σ, δ, s, F)                                    ||"
@@ -272,7 +296,7 @@ int main() {
                     nextState = getNextState2(nextState, stoi(currentByte));
                 }
 
-                if (nextState == "q2s") {
+                if (nextState == "q2") {
                     cout << endl << "[*] Estado final: " << nextState << endl;
                 } else {
                     cout << endl
